@@ -1,0 +1,16 @@
+name: Deployment Works
+
+on: [deployment_status]
+
+jobs:
+  e2e:
+    if: github.event.deployment_status.state == 'success' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Warm up URL
+        run: curl -s ${{ github.event.deployment_status.environment_url }}/api/stations
+      - name: Test Stations API
+        run: curl -sSf ${{ github.event.deployment_status.environment_url }}/api/stations
+      - name: Test React
+        run: curl -sSf ${{ github.event.deployment_status.environment_url }}/manifest.json
