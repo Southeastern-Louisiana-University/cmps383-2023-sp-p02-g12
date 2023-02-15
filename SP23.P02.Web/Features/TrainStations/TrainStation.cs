@@ -7,4 +7,6 @@ public class TrainStation
     public string Name { get; set; }
 
     public string Address { get; set; }
+
+    public User? Manager { get; set; }
 }
