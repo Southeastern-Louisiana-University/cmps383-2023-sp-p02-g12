@@ -15,23 +15,19 @@ public class DataContext : IdentityDbContext<User, Role, int, IdentityUserClaim<
     {
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
-        
+    protected override void OnModelCreating(ModelBuilder builder)
+    { 
         base.OnModelCreating(builder);
         var userRoleBuilder = builder.Entity<UserRole>();
 
         userRoleBuilder.HasKey(x => new { x.UserId, x.Role });
 
-        userRoleBuilder.HasOne(x.Role)
-                       .WithMany(x => x.Users)
-                       .HasForeignKey(x => x.RoleId);
+       // userRoleBuilder.HasOne(navigationExpression: x.Role)
+                     //  .WithMany(navigationExpression: x => x.Users)
+                      // .HasForeignKey( x => x.RoleId);
 
-        userRoleBuilder.HasOne(x => x.User)
-            .WithMany(x => x.Roles)
+        userRoleBuilder.HasOne(navigationExpression: x => x.User)
+            .WithMany(navigationExpression: x => x.Roles)
             .HasForeignKey(x => x.UserId);
 
 

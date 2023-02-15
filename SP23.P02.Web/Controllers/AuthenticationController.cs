@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SP23.P02.Web.Data;
@@ -10,19 +12,7 @@ namespace SP23.P02.Web.Controllers
     [Route("/")]
     [ApiController]
     public class AuthenticationController : ControllerBase
-    {
-        private readonly DataContext dataContext;
-        public AuthenticationController(DataContext dataContext) {
-            this.dataContext = dataContext;
-
-        }
-
-        [HttpPost]
-        public ActionResult<LoginDto>
-
-
-
-
+    { 
 
     }
 }
