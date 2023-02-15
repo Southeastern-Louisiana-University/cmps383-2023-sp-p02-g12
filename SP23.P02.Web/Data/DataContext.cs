@@ -22,9 +22,9 @@ public class DataContext : IdentityDbContext<User, Role, int, IdentityUserClaim<
 
         userRoleBuilder.HasKey(x => new { x.UserId, x.Role });
 
-       // userRoleBuilder.HasOne(navigationExpression: x.Role)
-                     //  .WithMany(navigationExpression: x => x.Users)
-                      // .HasForeignKey( x => x.RoleId);
+       userRoleBuilder.HasOne(navigationExpression: x.Role)
+                       .WithMany(navigationExpression: x => x.Users)
+                       .HasForeignKey( x => x.RoleId);
 
         userRoleBuilder.HasOne(navigationExpression: x => x.User)
             .WithMany(navigationExpression: x => x.Roles)

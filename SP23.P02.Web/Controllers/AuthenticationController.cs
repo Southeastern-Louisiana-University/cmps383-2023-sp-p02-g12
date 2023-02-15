@@ -13,6 +13,6 @@ namespace SP23.P02.Web.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     { 
-
+        
     }
 }
